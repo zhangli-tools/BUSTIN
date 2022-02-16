@@ -9,7 +9,7 @@ library(Seurat)<br>
 library(scSorter)<br>
 library(InSBut)<br>
 
-## calculate the contribution of the cell types to the overall gene expression.
+## Calculate the contribution of the cell types to the overall gene expression.
 cell.prop= calculate.contribution(seurat.obj)
 ## Identify the cell types primarily expressing the genes of interest.<br>
 celltype= test.contribution(seurat.obj, resistant.genes) <br>
