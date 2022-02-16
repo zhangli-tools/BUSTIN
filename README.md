@@ -1,5 +1,5 @@
 # InSBut
-InSBut is a R package which identifies cell subpopulations that express the genes of your interest, e.g. the drug resistant genes, by integrating bulk and single-cell transcriptome data.
+InSBut is a R package, which identifies cell subpopulations that express the genes of your interest, e.g. the drug resistant genes, by integrating bulk and single-cell transcriptome data.
 
 # Installation
 devtools::install("zhangli-tools/InSBut")
