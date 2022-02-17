@@ -66,7 +66,7 @@ identify.subpop=function(seurat.obj,geneset)
   picked_genes = unique(c(anno$Marker, topgenes))
   expr = expr[rownames(expr) %in% picked_genes, ]
   rts <- scSorter::scSorter(expr, anno)
-  Seurat::Idents(seurat.obj)=rts$Pred_Type
+  Seurat::Idents(seurat.obj)=factor(rts$Pred_Type,levels = c("pos","neg"))
   return(seurat.obj)
 }
 
@@ -89,7 +89,7 @@ identify.subpop.m=function(seurat.obj,geneset,CellType,sample="orig.ident")
   cell.class=unlist(lapply(seurat.obj.list,function(x){clas=as.matrix(Seurat::Idents(x))[,1]}),use.names = F)
   names(cell.class)=unlist(lapply(seurat.obj.list,function(x){names(Seurat::Idents(x))}))
   cell.class=cell.class[names(Seurat::Idents(seurat.obj))]
-  Idents(seurat.obj)=cell.class
+  Idents(seurat.obj)=factor(cell.class,levels=c("pos","neg"))
   return(seurat.obj)
 }
 
