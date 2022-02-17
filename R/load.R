@@ -17,19 +17,14 @@ calculate.contribution=function(seurat.obj)
   return(obs.prop)
 }
 
-enrich.test=function(geneset1,geneset2,bg)
+enrich.test=function(geneset1,geneset2,p)
 {
-  mat=matrix(c(length(intersect(geneset1,geneset2)),
-               length(intersect(geneset1,setdiff(bg,geneset2))),
-               length(intersect(setdiff(bg,geneset1),geneset2)),
-               length(intersect(setdiff(bg,geneset2),setdiff(bg,geneset2)))),ncol=2)
-  p=fisher.test(mat)$p.value
+  p=prop.test(length(geneset1),length(geneset2),p = p,alternative = "greater")$p.value
   return(p)
 }
 
 
-
-test.contribution=function(seurat.obj,geneset,bg=NULL)
+test.contribution=function(seurat.obj,geneset)
 {
   if(is.null(bg))
   {
@@ -49,8 +44,10 @@ test.contribution=function(seurat.obj,geneset,bg=NULL)
     y=rownames(obs.prop)[which(p.adjust(p[,i],method="fdr")<0.05)]
     y1=names(which(apply(obs.prop[y,],1,which.max)==i))
   })
+  OR.genes=lapply(OR.genes,intersect,geneset)
   names(OR.genes)=colnames(p)
-  res=list(pvalue=sapply(OR.genes,function(x){enrich.test(x,geneset,bg)}),OR.genes=sapply(OR.genes,intersect,geneset))
+  res=list(pvalue=sapply(OR.genes,function(x){enrich.test(x,unique(unlist(OR.genes)),1/length(OR.genes))}),OR.genes=OR.genes)
+  return(res)
 }
 
 
@@ -77,7 +74,7 @@ identify.subpop=function(seurat.obj,geneset)
   return(seurat.obj)
 }
 
-test.contribution.m=function(seurat.obj,geneset,bg=NULL,sample="orig.ident")
+test.contribution.m=function(seurat.obj,geneset,sample="orig.ident")
 {
   seurat.obj.list=Seurat::SplitObject(seurat.obj,split.by = sample)
   seurat.obj.out=lapply(seurat.obj.list,function(x){
