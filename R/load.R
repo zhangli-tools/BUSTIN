@@ -26,10 +26,6 @@ enrich.test=function(geneset1,geneset2,p)
 
 test.contribution=function(seurat.obj,geneset)
 {
-  if(is.null(bg))
-  {
-    bg=rownames(seurat.obj@assays$RNA@data)
-  }
   seurat.obj.rand=seurat.obj
   Seurat::Idents(seurat.obj.rand)=factor(as.matrix(Seurat::Idents(seurat.obj.rand))[sample(1:ncol(seurat.obj.rand),size = ncol(seurat.obj.rand),replace = F),1],levels=levels(Seurat::Idents(seurat.obj)))
   obs.prop=calculate.contribution(seurat.obj)
