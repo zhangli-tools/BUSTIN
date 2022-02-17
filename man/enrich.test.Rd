@@ -8,7 +8,7 @@ enrich.test
 Test the overrepresentation of one geneset in the other one. Fisher's exact test was applied. 
 }
 \usage{
-enrich.test(geneset1,geneset2,bg)
+enrich.test(geneset1,geneset2,p)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -18,8 +18,8 @@ A vector: Gene set 1.
   \item{geneset2}{
 A vector: Gene set 2.
 }
-  \item{bg}{
-A vector: Gene set used as the background, usually the genes from the whole genome. 
+  \item{p}{
+Numeric: the theoretical probability. 
 }
 
 }
