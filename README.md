@@ -1,8 +1,8 @@
-# InSBut
-InSBut (Integration of Single-cell and Bulk Transcriptome data) is an R package, which identifies cell subpopulations that primarily express the genes of your interest, e.g. the drug resistant genes, by integrating bulk and single-cell transcriptome data.
+# BUSTIN
+BUSTIN (Bulk and Single-cell transcriptome data integration ) is an R package, which identifies cell subpopulations that primarily express the genes of your interest, e.g. the drug resistant genes, by integrating bulk and single-cell transcriptome data.
 
 # Installation
-devtools::install_github("zhangli-tools/InSBut")<br>
+devtools::install_github("zhangli-tools/BUSTIN")<br>
 install.packages(c("Seurat","scSorter"))
 # Usage
 library(Seurat)<br>
