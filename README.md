@@ -7,7 +7,7 @@ install.packages(c("Seurat","scSorter"))
 # Usage
 library(Seurat)<br>
 library(scSorter)<br>
-library(InSBut)<br>
+library(BUSTIN)<br>
 ## Idnetify the drug resistant genes from bulk data
 resistant.genes=run.limma(bulk.data, pdata, resistant=T, padj=0.05, log2fc=0.5)
 ## if you use the bulk RNA-seq data
