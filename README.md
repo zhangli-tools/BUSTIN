@@ -8,7 +8,10 @@ install.packages(c("Seurat","scSorter"))
 library(Seurat)<br>
 library(scSorter)<br>
 library(InSBut)<br>
-
+## Idnetify the drug resistant genes from bulk data
+resistant.genes=run.limma(bulk.data, pdata, resistant=T, padj=0.05, log2fc=0.5)
+## if you use the bulk RNA-seq data
+resistant.genes=run.DESeq(bulk.data, pdata, resistant=T, padj=0.05, log2fc=0.5)
 ## Calculate the contribution of the cell types to the overall gene expression.
 cell.prop= calculate.contribution(seurat.obj)
 ## Identify the cell types primarily expressing the genes of interest.<br>
