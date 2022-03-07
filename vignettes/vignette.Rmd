@@ -1,5 +1,5 @@
 ---
-title: "InSBut manual"
+title: "BUSTIN manual"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{vignette}
