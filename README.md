@@ -3,7 +3,7 @@ BUSTIN (Bulk and Single-cell transcriptome data integration ) is an R package, w
 
 # Installation
 devtools::install_github("zhangli-tools/BUSTIN")<br>
-install.packages(c("Seurat","scSorter"))
+install.packages(c("Seurat","scSorter","DESeq2","limma"))
 # Usage
 library(Seurat)<br>
 library(scSorter)<br>
