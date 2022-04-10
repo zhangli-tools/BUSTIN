@@ -93,5 +93,38 @@ identify.subpop.m=function(seurat.obj,geneset,CellType,sample="orig.ident")
   return(seurat.obj)
 }
 
+run.limma(bulk.data, pdata, resistant=T, padj=0.05, log2fc=0.5)
+{
+  design.group=cbind(yes=label,no=1-label)
+  group.fit = limma::lmFit(expr, design.group)
+  group.fit = limma::eBayes(group.fit)
+  group.contrast.matrix = limma::makeContrasts(CancervNormal =yes - 
+                                            no, levels = design.group)
+  group.fit2 = limma::contrasts.fit(group.fit, group.contrast.matrix)
+  group.fit2 = limma::eBayes(group.fit2)
+  group.results = limma::topTable(group.fit2, number = nrow(expr), sort.by = "p", 
+                             adjust.method = "BH")
+  if(resistant)
+  {
+    res=rownames(group.results)[which(group.results$adj.P.Val<padj & group.results$logFC>log2fc)]
+  }else{
+    res=rownames(group.results)[which(group.results$adj.P.Val<padj & group.results$logFC< -log2fc)]
+  }
+  res
+}
+
+run.DESeq(bulk.data, pdata, resistant=T, padj=0.05, log2fc=0.5)
+{
+  dds=DESeq2::DESeqDataSetFromMatrix(bulk.data,colData = data.frame(g=pdata),design = ~g)
+  dds=DESeq2::DESeq(dds)
+  group.results = DESeq2::results(dds,contrast = c("g",1,0))
+  if(resistant)
+  {
+    res=rownames(group.results)[which(group.results$padj<padj & group.results$log2FoldChange>log2fc)]
+  }else{
+    res=rownames(group.results)[which(group.results$padj<padj & group.results$log2FoldChange< -log2fc)]
+  }
+  res
+}
 
 
