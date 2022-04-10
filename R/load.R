@@ -93,7 +93,7 @@ identify.subpop.m=function(seurat.obj,geneset,CellType,sample="orig.ident")
   return(seurat.obj)
 }
 
-run.limma(bulk.data, pdata, resistant=T, padj=0.05, log2fc=0.5)
+run.limma=function(bulk.data, pdata, resistant=T, padj=0.05, log2fc=0.5)
 {
   design.group=cbind(yes=pdata,no=1-pdata)
   group.fit = limma::lmFit(bulk.data, design.group)
@@ -113,7 +113,7 @@ run.limma(bulk.data, pdata, resistant=T, padj=0.05, log2fc=0.5)
   res
 }
 
-run.DESeq(bulk.data, pdata, resistant=T, padj=0.05, log2fc=0.5)
+run.DESeq=function(bulk.data, pdata, resistant=T, padj=0.05, log2fc=0.5)
 {
   dds=DESeq2::DESeqDataSetFromMatrix(bulk.data,colData = data.frame(g=pdata),design = ~g)
   dds=DESeq2::DESeq(dds)
