@@ -95,7 +95,7 @@ identify.subpop.m=function(seurat.obj,geneset,CellType,sample="orig.ident")
 
 run.limma(bulk.data, pdata, resistant=T, padj=0.05, log2fc=0.5)
 {
-  design.group=cbind(yes=label,no=1-label)
+  design.group=cbind(yes=pdata,no=1-pdata)
   group.fit = limma::lmFit(expr, design.group)
   group.fit = limma::eBayes(group.fit)
   group.contrast.matrix = limma::makeContrasts(CancervNormal =yes - 
