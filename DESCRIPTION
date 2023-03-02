@@ -22,5 +22,4 @@ Imports:
     Seurat,
     cluster,
     limma,
-    DESeq2,
-    iCNV
+    DESeq2
