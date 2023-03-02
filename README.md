@@ -3,18 +3,17 @@ BUSTIN (Bulk and Single-cell transcriptome data integration ) is an R package, w
 
 # Installation
 devtools::install_github("zhangli-tools/BUSTIN")<br>
-install.packages(c("Seurat","scSorter","DESeq2","limma"))
+install.packages(c("Seurat","DESeq2","limma"))
 # Usage
 library(Seurat)<br>
-library(scSorter)<br>
 library(BUSTIN)<br>
-## Idnetify the drug resistant genes from bulk data
+## Idnetify the drug resistant genes from bulk data <br>
 resistant.genes=run.limma(bulk.data, pdata, resistant=T, padj=0.05, log2fc=0.5)
-## if you use the bulk RNA-seq data
+## if you use the bulk RNA-seq data <br>
 resistant.genes=run.DESeq(bulk.data, pdata, resistant=T, padj=0.05, log2fc=0.5)
-## Calculate the contribution of the cell types to the overall gene expression.
-cell.prop= calculate.contribution(seurat.obj)
-## Identify the cell types primarily expressing the genes of interest.<br>
-celltype= test.contribution(seurat.obj, resistant.genes) <br>
-## Identify the cell subpopulations primarily expressing the genes of interest.<br>
-subpop=identify.subpop(seurat.obj, resistant.genes) <br>
+## Build a hierachical clustering tree for resistant genes based on scRNA-seq data <br>
+hc.resistant.genes=hclust.geneset(seurat.obj = seurat.obj,maxK = 10,geneset = resistant.genes) <br>
+## Predict the phenotype-associated cells<br>
+BUSTIN.out=predict.PAC(seurat.obj = seurat.obj,k.out.list = list(hc.resistant.genes),minModuleSize = 15) <br>
+## Identify the cell subpopulations associated with phenotype (drug resistance).<br>
+cell.type=ORA.celltype(BUSTIN.out$seurat.obj,features = grep("m\[0-9\]\+$", colnames(BUSTIN.out$seurat.obj@meta.data), value=T),group.by = "label") <br>
