@@ -8,8 +8,8 @@ devtools::install_github("zhangli-tools/BUSTIN")
 ```
 # Usage
 ```Rscript
-library(Seurat)<br>
-library(BUSTIN)<br>
+library(Seurat)
+library(BUSTIN)
 ```
 ## Idnetify the drug resistant genes from bulk data <br>
 ```Rscript
