@@ -12,7 +12,7 @@ binary.dist(mat)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{mat}{
+\item{mat}{
 Matrix: Binary matrix, the row and column indicate the genes and cells.
 }
 }

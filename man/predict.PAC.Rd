@@ -12,22 +12,22 @@ predict.PAC(seurat.obj,k.out.list,prob=0.95,minModuleSize=30,weight=NULL,median.
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{seurat.obj}{
+\item{seurat.obj}{
 The Seurat object: single-cell RNA-seq data.
 }
-  \item{k.out.list}{
+\item{k.out.list}{
 List: a list of the output returned by hclust.geneset(). 
 }
-  \item{prob}{
+\item{prob}{
 Numeric, the cutoff for the probability that the cell specifically expresses the gene module, default = 0.95. 
 }
-  \item{minModuleSize}{
+\item{minModuleSize}{
 Integer: minimal module size, defualt = 30.
 }
-  \item{weight}{
+\item{weight}{
 Numeric, the gene weight used for weighted analysis. Users can use the test statistics by gene differential expression analysis. 
 }
-  \item{median.sihouette.cutoff}{
+\item{median.sihouette.cutoff}{
 Numeric: the cutoff for the median Sihouette index, default = 0.01.
 }
 }
@@ -57,14 +57,7 @@ Numeric: the cutoff for the median Sihouette index, default = 0.01.
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (x) 
-{
-  }
+predict.PAC(seurat.obj,k.out.list,prob=0.95,minModuleSize=30,weight=NULL,median.sihouette.cutoff=0.01)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

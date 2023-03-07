@@ -12,23 +12,23 @@ run.limma(bulk.data, pdata, resistant=T, padj, log2fc,p.adjust.method)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{bulk.data}{
+\item{bulk.data}{
 Matrix: The log2 normalized bulk gene expression data. The rows and columns indicate the genes and samples, respectively.
 }
-  \item{pdata}{
+\item{pdata}{
 Vector: The variable indicates resistant or sensitive to drug treatment. 1 and 0 represent resistant and sensitive, respectively.
 }
-  \item{resistant}{
+\item{resistant}{
 Logic: TRUE and FALSE indicate return the resistant and sensitivie genes, respectively.
 }
-  \item{padj}{
+\item{padj}{
 Numeric: The cutoff for the adjusted P-value, default=0.05.
 }
-  \item{log2fc}{
+\item{log2fc}{
 Numeric: The cutoff for the log2 fold change, default=0.5.
 }
-  \item{p.adjust.method}{
-  Character: The method used for p.adjust
+\item{p.adjust.method}{
+Character: The method used for p.adjust
 }
 }
 

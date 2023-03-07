@@ -12,19 +12,19 @@ hclust.geneset(seurat.obj,geneset,maxK,p,percent)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{seurat.obj}{
+\item{seurat.obj}{
 The Seurat object: single-cell RNA-seq data.
 }
-  \item{geneset}{
+\item{geneset}{
 Vector: The gene symbols you intend to conduct hierarchical clustering analysis.
 }
-  \item{maxK}{
+\item{maxK}{
 Integer: the maximal cluster numbers for hierarchical clustering, greater than 2, default = 10.
 }
-  \item{p}{
+\item{p}{
 Numeric, the top percentage of expression for discretization, default = 0.05.
 }
-  \item{percent}{
+\item{percent}{
 Numeric, the percentage of non-expressed cells used for excluding genes with lowly expressed cells, default = 0.01.
 }
 

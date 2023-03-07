@@ -12,13 +12,13 @@ get.gene.modules=function(k.out,minModuleSize=30,median.sihouette.cutoff=0.01)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{k.out}{
+\item{k.out}{
 List: a list returned by hclust.geneset().
 }
-  \item{minModuleSize}{
+\item{minModuleSize}{
 Integer: minimal module size, defualt = 30.
 }
-  \item{median.sihouette.cutoff}{
+\item{median.sihouette.cutoff}{
 Numeric: the cutoff for the median Sihouette index, default = 0.01.
 }
 
@@ -46,11 +46,6 @@ A vector contains the class labels for the genes.
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
 get.gene.modules(k.out,minModuleSize=30,median.sihouette.cutoff=0.01)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

@@ -12,7 +12,7 @@ scale2zscore(x)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{mat}{
+\item{mat}{
 Matrix, the row and column indicate the genes and samples/cells.
 }
 }
