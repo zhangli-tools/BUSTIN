@@ -2,7 +2,7 @@
 BUSTIN (BUlk and Single-cell Transcriptome data INtegration) is an R package, which identifies cell subpopulations that primarily express the genes of your interest, e.g. the drug resistant genes, by integrating bulk and single-cell transcriptome data.
 
 # Installation
-BiocManager::install(c("Seurat","DESeq2","limma")) <br>
+BiocManager::install(c("Seurat","DESeq2","limma","cluster")) <br>
 devtools::install_github("zhangli-tools/BUSTIN")<br>
 # Usage
 library(Seurat)<br>
