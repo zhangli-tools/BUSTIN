@@ -81,7 +81,7 @@ get.gene.modules=function(k.out,minModuleSize=30,median.sihouette.cutoff=0.01){
   best.cls
 }
 
-predict.PAC=function(seurat.obj,k.out.list,p=0.05,prob=0.95,minModuleSize=30,weight=NULL,median.sihouette.cutoff=0.01){
+predict.PAC=function(seurat.obj,k.out.list,prob=0.95,minModuleSize=30,weight=NULL,median.sihouette.cutoff=0.01){
 
   gene.modules.list=lapply(k.out.list,function(k.out){
     gene.modules=get.gene.modules(k.out,minModuleSize = minModuleSize,median.sihouette.cutoff  = median.sihouette.cutoff)
@@ -198,7 +198,7 @@ ORA.celltype=function(seurat.obj,features=c("M1"),group.by=NULL)
   return(enrich.tab)
 }
 
-run.limma=function(bulk.data, pdata, resistant=T, padj=0.05, log2fc=0.5)
+run.limma=function(bulk.data, pdata, resistant=T, padj=0.05, log2fc=0.5,p.adjust.method="none")
 {
   design.group=cbind(yes=pdata,no=1-pdata)
   group.fit = limma::lmFit(bulk.data, design.group)
@@ -209,6 +209,7 @@ run.limma=function(bulk.data, pdata, resistant=T, padj=0.05, log2fc=0.5)
   group.fit2 = limma::eBayes(group.fit2)
   group.results = limma::topTable(group.fit2, number = nrow(bulk.data), sort.by = "p",
                              adjust.method = "BH")
+  group.results$adj.P.Val=p.adjust(group.results$P.Value,method = p.adjust.method)
   if(resistant)
   {
     res=rownames(group.results)[which(group.results$adj.P.Val<padj & group.results$logFC>log2fc)]
@@ -218,11 +219,12 @@ run.limma=function(bulk.data, pdata, resistant=T, padj=0.05, log2fc=0.5)
   res
 }
 
-run.DESeq=function(bulk.data, pdata, resistant=T, padj=0.05, log2fc=0.5)
+run.DESeq=function(bulk.data, pdata, resistant=T, padj=0.05, log2fc=0.5,p.adjust.method="none")
 {
   dds=DESeq2::DESeqDataSetFromMatrix(bulk.data,colData = data.frame(g=pdata),design = ~g)
   dds=DESeq2::DESeq(dds)
   group.results = DESeq2::results(dds,contrast = c("g",1,0))
+  group.results$padj=p.adjust(group.results$pvalue,method = p.adjust.method)
   if(resistant)
   {
     res=rownames(group.results)[which(group.results$padj<padj & group.results$log2FoldChange>log2fc)]
