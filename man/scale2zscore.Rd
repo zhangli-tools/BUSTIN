@@ -8,7 +8,7 @@ scale2zscore
 Scale a matrix to Z-score by row.
 }
 \usage{
-scale2zscore(x)
+scale2zscore(mat)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
