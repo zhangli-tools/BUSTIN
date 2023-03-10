@@ -29,5 +29,5 @@ BUSTIN.out=predict.PAC(seurat.obj = seurat.obj,k.out.list = list(hc.resistant.ge
 ```
 ## Identify the cell subpopulations associated with phenotype (drug resistance).<br>
 ```Rscript
-cell.type=ORA.celltype(BUSTIN.out$seurat.obj,features = grep("m\[0-9\]\+$", colnames(BUSTIN.out$seurat.obj@meta.data), value=T),group.by = "label")
+cell.type=ORA.celltype(BUSTIN.out$seurat.obj,features = grep("m[0-9]+$", colnames(BUSTIN.out$seurat.obj@meta.data), value=T),group.by = "label")
 ```
