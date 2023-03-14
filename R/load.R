@@ -82,7 +82,10 @@ get.gene.modules=function(k.out,minModuleSize=30,median.sihouette.cutoff=0.01){
 }
 
 predict.PAC=function(seurat.obj,k.out.list,prob=0.95,minModuleSize=30,weight=NULL,median.sihouette.cutoff=0.01){
-
+  if(is.null(weight)){
+  weight=rep(1,nrow(seurat.obj))
+  names(weight)=rownames(seurat.obj)
+  }
   gene.modules.list=lapply(k.out.list,function(k.out){
     gene.modules=get.gene.modules(k.out,minModuleSize = minModuleSize,median.sihouette.cutoff  = median.sihouette.cutoff)
     gene.modules=gene.modules[gene.modules>0]
